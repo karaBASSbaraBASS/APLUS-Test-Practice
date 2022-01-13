@@ -34,7 +34,7 @@ public class BaseTest {
         browser = ChromeWebDriverProvider.class.getName();
         open(Variables.URL);
         pollingInterval = 30;
-        timeout = 30000;
+        timeout = 60000;
     }
 
     @AfterAll
