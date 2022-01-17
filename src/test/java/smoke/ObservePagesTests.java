@@ -9,7 +9,19 @@ import org.junit.jupiter.api.Test;
 public class ObservePagesTests extends BaseTest {
 
     @Test
-    public void checkForMandatoryBlocksHomePage() {
+    public void observeHomePage() {
         new HomePage().checkForMandatoryBlocksHomePage();
     }
+
+    @Test
+    public void observePromoPanel(){
+        new HomePage().checkDefaultBannerText();
+
+        new HomePage().ClickEmailButtonAndCheckTitle();
+        new HomePage().ClickLogoButtonAndCheckTitle();
+        new HomePage().ClickStoreButtonAndCheckTitle();
+        new HomePage().ClickHostingButtonAndCheckTitle();
+    }
+
+
 }
