@@ -1,5 +1,7 @@
 package aplus.ui.base;
 
+import aplus.ui.pages.HomePage;
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.ex.ElementNotFound;
@@ -33,6 +35,14 @@ public class BasePage {
      */
     protected SelenideElement verifyElementExistsAndVisible(By locator) {
         return $(locator).should(exist).shouldBe(visible);
+    }
+    /**
+     * Scroll viewport to existing element on the page.
+     *
+     * @param locator - page element locator.
+     */
+    protected SelenideElement scrollToElement(By locator) {
+        return $(locator).scrollIntoView(true);
     }
 
     /**
@@ -543,5 +553,9 @@ public class BasePage {
                 e.printStackTrace();
             }
         }
+    }
+
+    protected void checkTitle(By Locator, String titleToCheck){
+        $(Locator).shouldHave(Condition.text(titleToCheck));
     }
 }
