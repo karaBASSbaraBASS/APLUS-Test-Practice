@@ -21,12 +21,12 @@ public class ObservePagesTests extends BaseTest {
     //        new HomePage()
     //                .checkTitlePage("Aplus.net: Web Hosting &amp; Domain Name Registration Services");
     //    }
-    //Test3
+    //Test3 from HomePage.xls
     @Test
     public void observeHomePage() {
         new HomePage().checkForMandatoryBlocksHomePage();
     }
-    //Test4
+    //Test4 from HomePage.xls
     @Test
     public void observePromoPanel(){
         new HomePage()
@@ -36,7 +36,7 @@ public class ObservePagesTests extends BaseTest {
                 .clickStoreButtonAndCheckTitle()
                 .clickHostingButtonAndCheckTitle();
     }
-    //Test5
+    //Test5 from HomePage.xls
     @Test
     public void testSearchForANewDomainErrorMessages(){
         new HomePage()
@@ -53,7 +53,7 @@ public class ObservePagesTests extends BaseTest {
                 .insertDomainName("TestersGonnaTest.ru")
                 .checkErrorMessage("Wrong TLD Extension");
     }
-    //Test6
+    //Test6 from HomePage.xls
     @Test
     public void testRedirectionToAdditionalDomainExtensions(){
         new HomePage()
@@ -63,7 +63,7 @@ public class ObservePagesTests extends BaseTest {
                 .addDomainToCart()
                 .checkResultText("qatest-ym-011090.com");
     }
-    //Test7
+    //Test7 from HomePage.xls
     //TODO
     // какие библиотеки используются для проверки на тайпо?
     // какие билиотеки используются на проверку битых картинок?
@@ -74,7 +74,7 @@ public class ObservePagesTests extends BaseTest {
                 .checkAndClickDailyDealsLearnMore()
                 .CheckDailyDealsBlockVisible();
     }
-    //Test8
+    //Test8 from HomePage.xls
     @Test
     public void testObserveCreateWebsiteAndCheckCarousel() {
         new HomePage()
@@ -82,7 +82,7 @@ public class ObservePagesTests extends BaseTest {
                 .checkNecessaryBlocksInCreateWebsiteSection()
                 .createWebsiteCarouselTest();
     }
-    //Test9
+    //Test9 from HomePage.xls
     @Test
     public void testObserveCustomEmailAndClickLearnMoreButton() {
         new HomePage()
@@ -90,7 +90,7 @@ public class ObservePagesTests extends BaseTest {
                 .checkAndClickCustomEmailLearnMore()
                 .CheckCustomEmailNecessaryFields();
     }
-    //Test10
+    //Test10 from HomePage.xls
     @Test
     public void testObserveDesignAndClickLearnMoreButton() {
         new HomePage()
@@ -98,12 +98,20 @@ public class ObservePagesTests extends BaseTest {
                 .checkAndClickObserveDesignLearnMore()
                 .checkDesignNecessaryFields();
     }
-    //Test11
+    //Test11 from HomePage.xls
     @Test
     public void testObserveSiteLockSecurityAndClickLearnMoreButton() {
         new HomePage()
                 .acceptCoockies()
                 .checkAndClickObserveSiteLockSecurityLearnMore()
                 .checkSiteLockSecurityNecessaryFields();
+    }
+    //Test12 from HomePage.xls
+    @Test
+    public void observeTestimonialsCarousel() {
+        new HomePage()
+                .acceptCoockies()
+                .checkNecessaryBlocksInTestimonialsSection()
+                .testimonialsCarouselTest();
     }
 }

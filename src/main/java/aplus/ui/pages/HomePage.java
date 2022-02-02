@@ -1,6 +1,7 @@
 package aplus.ui.pages;
 
 import aplus.ui.base.BasePage;
+import aplus.ui.widgets.ActivityOrFragment;
 import aplus.ui.widgets.CarouselTests;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.WebDriverRunner;
@@ -38,18 +39,25 @@ public class HomePage extends BasePage {
     private final By createWebsiteSliderWrapper = By.xpath("//div[contains(@class,'product-slider-wrap')][1]//div[@class='owl-wrapper']");
     private final By createWebsiteSliderFirstDot = By.xpath("//div[contains(@class,'product-slider-wrap')][1]//div[@class='owl-page'][1]");
     private final By createWebsiteSliderActiveDot = By.xpath("//div[contains(@class,'product-slider-wrap')][1]//div[@class='owl-page active']");
+    private final By createWebsiteSliderNotActiveDot = By.xpath("//div[contains(@class,'product-slider-wrap')][1]//div[@class='owl-page'][not (contains(@class,'active'))]");
     //Create custom email
     private final By customEmailLearnMore = By.xpath("//a[contains(@aria-label,'Learn more about Business Emails')]");
     private final By customEmailTitle = By.xpath("//*[contains(text(),'Custom email')]");
-
+    //Create own Design
     private final By designLearnMore = By.xpath("//a[contains(@aria-label,'Learn more about Logo Design')]");
     private final By designLogoBannerImage = By.xpath("//img[@alt='The Brandname']");
-
+    //Order site lock security
     private final By siteLockSecurityLearnMore = By.xpath("//a[contains(@aria-label,'Learn more about SiteLock Security')]");
     private final By siteLockBannerImage = By.xpath("//img[@alt='Sitelock Logo']");
-
+    //Testimonials block
+    private final By getTestimonialsHeader = By.xpath("//div[@class='comment-slider-wrap']");
     private final By testimonialsLeftButton = By.xpath("//div[contains(@class,'owl-carousel')]//div[@class='left-arrow']");
     private final By testimonialsRightButton = By.xpath("//div[contains(@class,'owl-carousel')]//div[@class='right-arrow']");
+    private final By testimonialsSliderActiveDot = By.xpath("//div[contains(@class,'comment-slider-wrap')]//div[@class='owl-page active']");
+    private final By testimonialsNotActiveCards = By.xpath("//div[contains(@class,'comment-slider-wrap')]//div[@class='owl-page'][not (contains(@class,'active'))]");
+    private final By randomTestimonialsNotActiveCard = By.xpath("//div[contains(@class,'comment-slider-wrap')]//div[@class='owl-page active']/following-sibling::div");
+
+    //Footer block
     private final By footerSection = By.xpath("//div[@id='footer']");
 
     private final By promoPanelHostingButton = By.xpath("//a[contains(@aria-label,'Open Professional Cloud Hosting Slide')]");
@@ -202,8 +210,9 @@ public class HomePage extends BasePage {
     public CarouselTests createWebsiteCarouselTest(){
         String selectorToDotsElements = "//div[contains(@class,'product-slider-wrap')][1]//div[contains(@class,'owl-page')]";
         CarouselTests сarouselTests = new CarouselTests();
-        сarouselTests.carouselShouldChangeSlideIfDotIsClicked(selectorToDotsElements);
-        сarouselTests.carouselShouldChangeSlideInAutoMode(selectorToDotsElements, createWebsiteSliderActiveDot);
+        сarouselTests.carouselShouldChangeSlideIfDotIsClicked(selectorToDotsElements, createWebsiteSliderNotActiveDot, createWebsiteSliderActiveDot, true);
+        сarouselTests.carouselShouldChangeSlideIfDotIsClicked(selectorToDotsElements, createWebsiteSliderNotActiveDot, createWebsiteSliderActiveDot, false);
+
         return new CarouselTests();
     }
     public CustomEmailLearnPage checkAndClickCustomEmailLearnMore(){
@@ -228,6 +237,31 @@ public class HomePage extends BasePage {
         verifyElementExistsAndVisible(siteLockBannerImage);
         //perform learnMore click
         verifyElementExistsAndVisible(siteLockSecurityLearnMore).hover().click();
+        //TODO implement spellChecker
+        //SpellChecker captuoreRequests = new SpellChecker();
+        //captuoreRequests.SpellCheckRequest("What people have to ssadfase343ay about Aplus.net");
+        //ActivityOrFragment.makeRequest();
+
         return new SiteLockSecurityLearnPage();
     }
+
+
+    public HomePage checkNecessaryBlocksInTestimonialsSection() {
+        verifyElementExistsAndVisible(getTestimonialsHeader);
+        $(getTestimonialsHeader).shouldHave(Condition.text("What people have to say about Aplus.net"));
+        verifyElementExistsAndVisible(testimonialsLeftButton);
+        verifyElementExistsAndVisible(testimonialsRightButton);
+        return new HomePage();
+    }
+    public CarouselTests testimonialsCarouselTest(){
+        String testimonialsItems = "//div[contains(@class,'comment-slider-wrap')]//div[contains(@class,'owl-page')]";
+        CarouselTests сarouselTests = new CarouselTests();
+        сarouselTests.carouselShouldChangeSlideIfDotIsClicked(testimonialsItems, testimonialsRightButton, testimonialsSliderActiveDot, true);
+        сarouselTests.carouselShouldChangeSlideIfDotIsClicked(testimonialsItems, testimonialsLeftButton, testimonialsSliderActiveDot, true);
+        сarouselTests.carouselShouldChangeSlideIfDotIsClicked(testimonialsItems, testimonialsLeftButton, testimonialsSliderActiveDot, false);
+        return new CarouselTests();
+    }
+
 }
+
+
