@@ -17,7 +17,7 @@ public class DailyDealsLearnPage extends BasePage {
     }
     //Todo
     //Ask why it didnt work?
-    public DailyDealsLearnPage checkCurentURL(){
+    private DailyDealsLearnPage checkCurentURL(){
         String expectedUrl = "https://preview-aplus-website.c45stagehostopia.com/deals";
         String currentUrl = WebDriverRunner.url(); //returns  https://preview-aplus-website.c45stagehostopia.com
 

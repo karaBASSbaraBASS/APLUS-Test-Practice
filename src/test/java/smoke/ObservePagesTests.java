@@ -114,4 +114,10 @@ public class ObservePagesTests extends BaseTest {
                 .checkNecessaryBlocksInTestimonialsSection()
                 .testimonialsCarouselTest();
     }
+    //Test3 from Domains page testing.xlsx
+    @Test
+    public void observeDomainSearchPage() {
+        new HomePage()
+                .navigateToDomainSearch();
+    }
 }

@@ -1,14 +1,12 @@
 package aplus.ui.pages;
 
 import aplus.ui.base.BasePage;
-import aplus.ui.widgets.ActivityOrFragment;
 import aplus.ui.widgets.CarouselTests;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.WebDriverRunner;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -56,7 +54,6 @@ public class HomePage extends BasePage {
     private final By testimonialsSliderActiveDot = By.xpath("//div[contains(@class,'comment-slider-wrap')]//div[@class='owl-page active']");
     private final By testimonialsNotActiveCards = By.xpath("//div[contains(@class,'comment-slider-wrap')]//div[@class='owl-page'][not (contains(@class,'active'))]");
     private final By randomTestimonialsNotActiveCard = By.xpath("//div[contains(@class,'comment-slider-wrap')]//div[@class='owl-page active']/following-sibling::div");
-
     //Footer block
     private final By footerSection = By.xpath("//div[@id='footer']");
 
@@ -78,6 +75,10 @@ public class HomePage extends BasePage {
     private final By searchForANewDomainSearchButton = By.xpath("//button[contains(@class,'button js_search_domain_find_btn')]");
 
     private final By addDomainToCartButton = By.xpath("//div[contains(@class,'is-available-domain')]//button[contains(@class,'add-dom-but')]");
+
+    private final By menuNavigateDomainDropdown = By.xpath("//a[text()='Domain ']");
+    private final By menuNavigateDomainButton = By.xpath("//ul[contains(@class,'dropdown')]//a[text()='Domain Search ']");
+
 
 
     public void checkForMandatoryBlocksHomePage(){
@@ -261,7 +262,11 @@ public class HomePage extends BasePage {
         сarouselTests.carouselShouldChangeSlideIfDotIsClicked(testimonialsItems, testimonialsLeftButton, testimonialsSliderActiveDot, false);
         return new CarouselTests();
     }
-
+    public DomainSearchPage navigateToDomainSearch(){
+        verifyElementExistsAndVisible(menuNavigateDomainButton).hover();
+        verifyElementExistsAndVisible(menuNavigateDomainDropdown).hover().click();
+        return new DomainSearchPage();
+    }
 }
 
 
