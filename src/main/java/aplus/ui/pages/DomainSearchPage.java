@@ -13,23 +13,29 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class DomainSearchPage extends BasePage {
     private final By headerSection = By.xpath("//section[contains(@class,'top-bar-section')]");
     private final By mainBanner = By.xpath("//div[@class='select-new-domain-wrap']//h2[@class='text-center']");
-    private final By enterDomain = By.xpath("//div[@id='enter_domain']");
+    private final By enterDomain = By.xpath("//div[contains(@class,'quicktabs_main')]//label[contains(@class,'js-no-tsml-decoration')]");
     private final By allDomainIncludeBlock = By.xpath("//div[@class='all-domains-include']");
     private final By searchDomainSwitcher = By.xpath("//div[@id='quicktabs-tab-domain_page_search_transfer-0']");
     private final By transferDomainSwitcher = By.xpath("//div[@id='quicktabs-tab-domain_page_search_transfer-1']");
     private final By seeDomainPricingChartLink = By.xpath("//strong[text()='See Domain Pricing Chart']/parent::a");
+    private final By seeDomainFooterSection = By.xpath("//div[@id='footer']");
+    private final By seeDomainTestimonialsSection = By.xpath("//div[@class='comment-slider-wrap']");
 
-//    - “3 ways to protect your domains” block with Domain Guard, Domain Privacy, Domain Monitor “Learn More” buttons.
-//    - “www.mydomain.club” block with info text, search field with “Search for a domain” inline text and magnifying glass search button, “Learn More” button;
-//    - Testimonials block;
-//    - Footer;
+    private final By seeDomainDomainGuardLearnMore = By.xpath("//div[@class='three-ways-to-protect']//h3[text()='Domain guard']/following-sibling::a");
+    private final By seeDomainDomainPrivacyLearnMore = By.xpath("//div[@class='three-ways-to-protect']//h3[text()='Domain privacy']/following-sibling::a");
+    private final By seeDomainDomainMonitorLearnMore = By.xpath("//div[@class='three-ways-to-protect']//h3[text()='Domain monitor']/following-sibling::a");
+
+    private final By seeDomainExampleDomainsSearch = By.xpath("//div[@class='ck-widget-search-again']//input[@placeholder='Search for a domain']");
+    private final By seeDomainExampleDomainsSearchButton = By.xpath("//div[@class='ck-widget-search-again']//button[@class,'button js_search_domain_find_btn']");
+    private final By seeDomainExampleDomainsSection = By.xpath("//div[@class='ck-widget-search-again']//div[contains(@class,'example-domain')]");
+    private final By seeDomainExampleDomainsLearnMore = By.xpath("//div[@class='ck-widget-search-again']//div[contains(@class,'learn-more-link')]");
 
 
-    public DomainNameSearchPage checkResultText(String titleToCheck){
+    public DomainNameSearchPage checkNecessarySections(){
         checkCurentURL();
         verifyElementExistsAndVisible(headerSection);
         verifyElementExistsAndVisible(mainBanner);
-        verifyElementExistsAndVisible(enterDomain);
+        //verifyElementExistsAndVisible(enterDomain);
         //Search field with “Enter the domain you want here (example.com)” inline text and magnifying glass search button;
         String enterDomainText = verifyElementExistsAndVisible(enterDomain).getAttribute("placeholder");
         String expectedEnterDomainText = "Enter the domain you want here (example.com)";
@@ -46,6 +52,19 @@ public class DomainSearchPage extends BasePage {
         verifyElementExistsAndVisible(seeDomainPricingChartLink);
         //“All domains include” info block;
         verifyElementExistsAndVisible(allDomainIncludeBlock);
+        //“3 ways to protect your domains” block with Domain Guard, Domain Privacy, Domain Monitor “Learn More” buttons.
+        verifyElementExistsAndVisible(seeDomainDomainGuardLearnMore);
+        verifyElementExistsAndVisible(seeDomainDomainPrivacyLearnMore);
+        verifyElementExistsAndVisible(seeDomainDomainMonitorLearnMore);
+        //“www.mydomain.club” block with info text, search field with “Search for a domain” inline text and magnifying glass search button, “Learn More” button;
+        verifyElementExistsAndVisible(seeDomainExampleDomainsSearch);
+        verifyElementExistsAndVisible(seeDomainExampleDomainsSearchButton);
+        verifyElementExistsAndVisible(seeDomainExampleDomainsSection);
+        verifyElementExistsAndVisible(seeDomainExampleDomainsLearnMore);
+        //Testimonials block;
+        verifyElementExistsAndVisible(seeDomainTestimonialsSection);
+        //Footer;
+        verifyElementExistsAndVisible(seeDomainFooterSection);
 
 
         return new DomainNameSearchPage();

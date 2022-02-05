@@ -118,6 +118,7 @@ public class ObservePagesTests extends BaseTest {
     @Test
     public void observeDomainSearchPage() {
         new HomePage()
-                .navigateToDomainSearch();
+                .navigateToDomainSearch()
+                .checkNecessarySections();
     }
 }
