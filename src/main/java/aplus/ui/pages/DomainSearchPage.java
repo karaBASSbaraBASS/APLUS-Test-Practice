@@ -13,11 +13,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class DomainSearchPage extends BasePage {
     private final By headerSection = By.xpath("//section[contains(@class,'top-bar-section')]");
     private final By mainBanner = By.xpath("//div[@class='select-new-domain-wrap']//h2[@class='text-center']");
-    private final By enterDomain = By.xpath("//div[contains(@class,'quicktabs_main')]//label[contains(@class,'js-no-tsml-decoration')]");
+    private final By enterDomain = By.xpath("//div[contains(@class,'quicktabs_main')]//input[@placeholder='Enter the domain you want here (example.com)']");
     private final By allDomainIncludeBlock = By.xpath("//div[@class='all-domains-include']");
-    private final By searchDomainSwitcher = By.xpath("//div[@id='quicktabs-tab-domain_page_search_transfer-0']");
-    private final By transferDomainSwitcher = By.xpath("//div[@id='quicktabs-tab-domain_page_search_transfer-1']");
-    private final By seeDomainPricingChartLink = By.xpath("//strong[text()='See Domain Pricing Chart']/parent::a");
+    private final By searchDomainSwitcher = By.xpath("//a[@id='quicktabs-tab-domain_page_search_transfer-0']");
+    private final By transferDomainSwitcher = By.xpath("//a[@id='quicktabs-tab-domain_page_search_transfer-1']");
+
+    private final By seeDomainPricingChartLink = By.xpath("//strong[text()='See Domain Pricing Chart'][@id='main-content']/parent::a");
     private final By seeDomainFooterSection = By.xpath("//div[@id='footer']");
     private final By seeDomainTestimonialsSection = By.xpath("//div[@class='comment-slider-wrap']");
 
@@ -35,7 +36,7 @@ public class DomainSearchPage extends BasePage {
         checkCurentURL();
         verifyElementExistsAndVisible(headerSection);
         verifyElementExistsAndVisible(mainBanner);
-        //verifyElementExistsAndVisible(enterDomain);
+        verifyElementExistsAndVisible(enterDomain);
         //Search field with “Enter the domain you want here (example.com)” inline text and magnifying glass search button;
         String enterDomainText = verifyElementExistsAndVisible(enterDomain).getAttribute("placeholder");
         String expectedEnterDomainText = "Enter the domain you want here (example.com)";
@@ -50,6 +51,7 @@ public class DomainSearchPage extends BasePage {
         assertEquals(transferDomainSwitcherText, expectedTransferDomainSwitcherText);
         //Check “See domain pricing chart” link;
         verifyElementExistsAndVisible(seeDomainPricingChartLink);
+        //“All domains include” info block;
         //“All domains include” info block;
         verifyElementExistsAndVisible(allDomainIncludeBlock);
         //“3 ways to protect your domains” block with Domain Guard, Domain Privacy, Domain Monitor “Learn More” buttons.
