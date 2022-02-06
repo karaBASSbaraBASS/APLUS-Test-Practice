@@ -27,9 +27,9 @@ public class DomainSearchPage extends BasePage {
     private final By seeDomainDomainMonitorLearnMore = By.xpath("//div[@class='three-ways-to-protect']//h3[text()='Domain monitor']/following-sibling::a");
 
     private final By seeDomainExampleDomainsSearch = By.xpath("//div[@class='ck-widget-search-again']//input[@placeholder='Search for a domain']");
-    private final By seeDomainExampleDomainsSearchButton = By.xpath("//div[@class='ck-widget-search-again']//button[@class,'button js_search_domain_find_btn']");
+    private final By seeDomainExampleDomainsSearchButton = By.xpath("//div[@class='ck-widget-search-again']//button[@class='button js_search_domain_find_btn']");
     private final By seeDomainExampleDomainsSection = By.xpath("//div[@class='ck-widget-search-again']//div[contains(@class,'example-domain')]");
-    private final By seeDomainExampleDomainsLearnMore = By.xpath("//div[@class='ck-widget-search-again']//div[contains(@class,'learn-more-link')]");
+    private final By seeDomainExampleDomainsLearnMore = By.xpath("//div[@class='ck-widget-search-again']//a[contains(@class,'learn-more-link')]");
 
 
     public DomainNameSearchPage checkNecessarySections(){
