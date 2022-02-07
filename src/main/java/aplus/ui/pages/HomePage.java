@@ -267,6 +267,12 @@ public class HomePage extends BasePage {
         verifyElementExistsAndVisible(menuNavigateDomainDropdown).hover().click();
         return new DomainSearchPage();
     }
+    public DomainSearchPage observeHeaderAndFooterSections(){
+        String headerTextValuesHome = verifyElementExistsAndVisible(headerSection).getText();
+        String footerTextValuesHome = verifyElementExistsAndVisible(footerSection).getText();
+        return new DomainSearchPage().compareHeaderAndFooterSections( headerTextValuesHome, footerTextValuesHome );
+    }
+
 }
 
 

@@ -32,7 +32,9 @@ public class DomainSearchPage extends BasePage {
     private final By seeDomainExampleDomainsLearnMore = By.xpath("//div[@class='ck-widget-search-again']//a[contains(@class,'learn-more-link')]");
 
 
-    public DomainNameSearchPage checkNecessarySections(){
+
+
+    public DomainSearchPage checkNecessarySections(){
         checkCurentURL();
         verifyElementExistsAndVisible(headerSection);
         verifyElementExistsAndVisible(mainBanner);
@@ -69,14 +71,21 @@ public class DomainSearchPage extends BasePage {
         verifyElementExistsAndVisible(seeDomainFooterSection);
 
 
-        return new DomainNameSearchPage();
+        return new DomainSearchPage();
     }
-    private DomainNameSearchPage checkCurentURL(){
+    private DomainSearchPage checkCurentURL(){
         String currentUrl = WebDriverRunner.getWebDriver().getCurrentUrl();
         String expectedUrl = "https://preview-aplus-website.c45stagehostopia.com/domains";
 
         assertEquals(expectedUrl, currentUrl);
-        return new DomainNameSearchPage();
+        return new DomainSearchPage();
+    }
+    public DomainSearchPage compareHeaderAndFooterSections(String headerTextValuesHome, String footerTextValuesHome ) {
+        String headerTextValuesDomSerch = verifyElementExistsAndVisible(headerSection).getText();
+        String footerTextValuesDomSerch = verifyElementExistsAndVisible(seeDomainFooterSection).getText();
+        assertEquals(headerTextValuesHome, headerTextValuesDomSerch);
+        assertEquals(footerTextValuesDomSerch, footerTextValuesHome);
+        return new DomainSearchPage();
     }
 
 }

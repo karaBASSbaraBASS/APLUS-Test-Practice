@@ -116,10 +116,17 @@ public class ObservePagesTests extends BaseTest {
     }
     //Test3 from Domains page testing.xlsx
     @Test
-    public void observeDomainSearchPage() {
+    public void observeBuyDomainPage() {
         new HomePage()
                 .acceptCoockies()
                 .navigateToDomainSearch()
                 .checkNecessarySections();
+    }
+    //Test4 from Domains page testing.xlsx
+    @Test
+    public void observeHeaderAndFooterOnBuyDomainPage() {
+        new HomePage()
+                .acceptCoockies()
+                .observeHeaderAndFooterSections();
     }
 }
