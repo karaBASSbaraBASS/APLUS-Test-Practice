@@ -129,4 +129,12 @@ public class ObservePagesTests extends BaseTest {
                 .acceptCoockies()
                 .observeHeaderAndFooterSections();
     }
+    //Test5 from Domains page testing.xlsx
+    @Test
+    public void checkSearchFieldInDomainPage() {
+        new HomePage()
+                .acceptCoockies()
+                .navigateToDomainSearch();
+        new DomainSearchPage().checkSearchFieldErrorMessages();
+    }
 }
