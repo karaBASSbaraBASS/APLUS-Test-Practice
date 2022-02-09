@@ -114,7 +114,7 @@ public class ObservePagesTests extends BaseTest {
                 .checkNecessaryBlocksInTestimonialsSection()
                 .testimonialsCarouselTest();
     }
-    //Test3 from Domains page testing.xlsx
+    //Test3-4 from Domains page testing.xlsx
     @Test
     public void observeBuyDomainPage() {
         new HomePage()
@@ -122,19 +122,28 @@ public class ObservePagesTests extends BaseTest {
                 .navigateToDomainSearch()
                 .checkNecessarySections();
     }
-    //Test4 from Domains page testing.xlsx
+    //Test5 from Domains page testing.xlsx
     @Test
     public void observeHeaderAndFooterOnBuyDomainPage() {
         new HomePage()
                 .acceptCoockies()
                 .observeHeaderAndFooterSections();
     }
-    //Test5 from Domains page testing.xlsx
+    //Test6 from Domains page testing.xlsx
     @Test
     public void checkSearchFieldInDomainPage() {
         new HomePage()
                 .acceptCoockies()
                 .navigateToDomainSearch();
         new DomainSearchPage().checkSearchFieldErrorMessages();
+    }
+    //Test7 from Domains page testing.xlsx
+    //Search for a new domain with valid name (length from 2 to 63 characters, without special characters, with supported TLDs). Click ‘Search’ button.
+    @Test
+    public void searchNewDomainWithValidNameInDomainPage() {
+        new HomePage()
+                .acceptCoockies()
+                .navigateToDomainSearch();
+        new DomainSearchPage().checkSearchFieldValidMessages();
     }
 }

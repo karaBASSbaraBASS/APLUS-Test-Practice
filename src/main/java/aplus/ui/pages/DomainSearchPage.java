@@ -35,6 +35,11 @@ public class DomainSearchPage extends BasePage {
     private final By domainSearchInput = By.xpath("//div[contains(@class,'quicktabs_main')]//input[contains(@class,'js_search_domain_name')]");
     private final By domainSearchErrorHeader = By.xpath("//div[@class='formErrorContent']");
 
+    private final By domainSearchSuccessMessage = By.xpath("//div[@class='domain-name-search']//wrap-related");
+    private final By monitorThisDomainButton = By.xpath("//button[text()='Monitor This Domain']");
+    private final By addDomainToCartButton = By.xpath("//button[text()='ADD TO CART']");
+    private final By relatedDomainsList = By.xpath("//div[contains(@class,'is-not-available')]//div[@class='wrap-related']");
+
 
     public DomainSearchPage checkNecessarySections(){
         checkCurentURL();
@@ -92,25 +97,35 @@ public class DomainSearchPage extends BasePage {
 
     public DomainSearchPage checkSearchFieldErrorMessages() {
         //Domain name without characters
-        checkErrorText(" ","Please enter domain name");
+        checkResponseText(" ","Please enter domain name", domainSearchErrorHeader);
         //Domain name with more than 1 characters
-        checkErrorText("f","2 minimum characters are required");
+        checkResponseText("f","2 minimum characters are required", domainSearchErrorHeader);
         //Domain name with more than 63 characters
-        checkErrorText("Loremeipsumedoloresiteameteeconsectetureadipiscingeeliteegestase","63 maximum characters are required");
+        checkResponseText("Loremeipsumedoloresiteameteeconsectetureadipiscingeeliteegestase","63 maximum characters are required", domainSearchErrorHeader);
         //Domain name with special characters (: !@)
-        checkErrorText(": !@","Special characters are not allowed");
+        checkResponseText(": !@","Special characters are not allowed", domainSearchErrorHeader);
         //Domain name with non supported TLDs (.ru, .ua)
-        checkErrorText("Loremeipsumedo.ru","Wrong TLD Extension");
+        checkResponseText("Loremeipsumedo.ru","Wrong TLD Extension", domainSearchErrorHeader);
         //Domain name with non supported TLDs (.ru, .ua)
-        checkErrorText("Loremeipsumedo.ua","Wrong TLD Extension");
+        checkResponseText("Loremeipsumedo.ua","Wrong TLD Extension", domainSearchErrorHeader);
         return new DomainSearchPage();
     }
-    private DomainSearchPage checkErrorText(String inputText, String expectedBannerText){
+    private DomainSearchPage checkResponseText(String inputText, String expectedBannerText, By fieldWithResponse){
         $(domainSearchInput).clear();
         $(domainSearchInput).sendKeys(inputText);
         verifyElementExistsAndVisible(searchDomainButton).hover().click();
-        $(domainSearchErrorHeader).shouldHave(Condition.text(expectedBannerText));
+        $(fieldWithResponse).shouldBe(Condition.visible);
+        $(fieldWithResponse).shouldHave(Condition.text(expectedBannerText));
 
+        return new DomainSearchPage();
+    }
+
+    public DomainSearchPage checkSearchFieldValidMessages() {
+        checkResponseText("YEQA282022.com","yeqa282022.com is available!", domainSearchSuccessMessage);
+        verifyElementExistsAndVisible(addDomainToCartButton);
+        checkResponseText("google.com","Sorry, google.com is not available.", domainSearchSuccessMessage);
+        verifyElementExistsAndVisible(monitorThisDomainButton);
+        verifyElementExistsAndVisible(relatedDomainsList);
         return new DomainSearchPage();
     }
 }
